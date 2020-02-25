@@ -1,0 +1,17 @@
+<launch>
+
+
+
+  <!-- Map server -->
+
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find task_1)/maps/sample_map.yaml" />
+<!--
+  <arg name="initial_pose_x" default="0.0"/> 
+  <arg name="initial_pose_y" default="0.0"/> 
+  <arg name="initial_pose_a" default="0.0"/>
+-->
+  <include file="$(find task_1)/launch/includes/move_base.launch.xml">
+  </include>
+<node pkg="tf" type="static_transform_publisher" name="odom_map_broadcaster" args="0 0 0 0 0 0 /map /odom 100" />
+</launch>
+
